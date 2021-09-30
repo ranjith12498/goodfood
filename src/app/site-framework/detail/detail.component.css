@@ -1,0 +1,29 @@
+.table > :not(:last-child) > :last-child > * {
+  border-bottom-color: #0000001a;
+}
+.rounded-pill {
+  background: #3da496;
+  outline: none;
+  border: none;
+  margin-left: 10px;
+  max-width: 100px;
+
+  text-align: center;
+}
+
+.table {
+  margin-top: 50px;
+}
+
+.add-form {
+  margin-top: 10px;
+  max-width: 70%;
+  background: #3da49623;
+  border-radius: 35px;
+  margin-bottom: 20px;
+  padding: 0 50px 50px 50px;
+}
+
+.hide {
+  display: none;
+}

@@ -1,0 +1,132 @@
+<form
+  class="add-form row g-3"
+  (ngSubmit)="onSubmit(buttonType)"
+  [ngClass]="{ hide: !hideValue }"
+>
+  <div class="col-md-6">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-12">
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        [(ngModel)]="name"
+        id="name"
+        placeholder="Add name"
+      />
+    </div>
+  </div>
+
+  <div class="col-12">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Address</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        name="address"
+        [(ngModel)]="address"
+        id="address"
+        placeholder="Add Address"
+      />
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Distance</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        name="distance"
+        [(ngModel)]="distance"
+        id="distance"
+        placeholder="Add distance from Home"
+      />
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="menu" class="form-label">Menu</label>
+    <select
+      class="form-select"
+      id="inputState"
+      name="menu"
+      [(ngModel)]="menu"
+      aria-label="Default select example"
+    >
+      <option
+        value="{{ m.id }}"
+        *ngFor="let m of menuList"
+        (click)="selectMenu(m)"
+      >
+        {{ m.MenuDetails }} - ₹{{ m.Price }}
+      </option>
+    </select>
+  </div>
+
+  <div class="col-12">
+    <div class="form-check" *ngFor="let s of statusArr">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="status"
+        [(ngModel)]="status"
+        id="status"
+        value="{{ s }}"
+      />
+      <label class="form-check-label" for="flexRadioDefault1"> {{ s }} </label>
+    </div>
+  </div>
+
+  <input
+    type="submit"
+    value="Save all"
+    [ngClass]="{ disabled: hideSaveBtn }"
+    (click)="onSubmit('Save')"
+    class="btn btn-success"
+  />
+  <input
+    type="submit"
+    value="Update"
+    [ngClass]="{ disabled: updateBtn }"
+    (click)="onSubmit('Update')"
+    class="btn btn-success"
+  />
+  <input
+    type="submit"
+    value="Delete"
+    [ngClass]="{ disabled: updateBtn }"
+    (click)="onSubmit('Delete')"
+    class="btn btn-success"
+  />
+</form>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td scope="col">Customer</td>
+      <td scope="col">Address</td>
+      <td scope="col">Menu</td>
+      <td scope="col">Status</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orderList" (click)="update(order)">
+      <td scope="row">{{ order.name }}</td>
+      <td>
+        {{ order.address }}
+        <div>
+          <small class="text-muted">{{ order.distance }}km</small>
+        </div>
+      </td>
+      <td>
+        {{ order.menu }}
+        <div>
+          <small class="text-muted">₹{{ order.price }}</small>
+        </div>
+      </td>
+      <td class="ml-1">
+        <p class="status">{{ order.status }}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
